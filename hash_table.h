@@ -15,4 +15,7 @@ typedef struct HashTable {
 HashTable* create_hash_table();
 void insert_to_hash(HashTable* table, const char* id, DOMNode* node);
 DOMNode* lookup_hash(HashTable* table, const char* id);
+
+void delete_from_hash(HashTable* table, const char* id);
+
 #endif

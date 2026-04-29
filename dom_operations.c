@@ -117,3 +117,52 @@ void free_dom_tree(DOMNode* node) {
     free(node->children);
     free(node);
 }
+
+void renderDashboard(DOMNode* root, DOMNode* highlighted, const char* message) {
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
+
+    printf("==========================================================================\n");
+    printf("   DOM IDE - FAZ 3 | MESAJ: %s\n", message);
+    printf("==========================================================================\n");
+    printf("%-35s | %-35s\n", "[ HTML KAYNAK KODU ]", "[ CANLI DOM AGACI ]");
+    printf("------------------------------------+-------------------------------------\n");
+
+    // Not: Buraya ileride HTML metnini satır satır basacak bir mantık ekleyeceğiz.
+    // Şimdilik sadece ağaç yapısını sağda gösterelim.
+    print_collapsible_tree(root, 0, highlighted);
+
+    printf("------------------------------------+-------------------------------------\n");
+    printf(" KOMUTLAR: toggle <id> | find <id> | append <parent_id> <tag> | delete <id> | save | exit\n");
+    printf("--------------------------------------------------------------------------\n");
+    printf(">> ");
+}
+
+// --- COLLAPSIBLE TREE PRINT (Faz 3 Görselleştirme) ---
+void print_collapsible_tree(DOMNode* node, int depth, DOMNode* highlighted) {
+    if (node == NULL) return;
+
+    // Girintileme
+    for (int i = 0; i < depth; i++) printf("  ");
+
+    // Vurgulama (Eğer aranan düğümse yeşil yap)
+    if (node == highlighted) printf("\033[1;32m");
+
+    // Açılır-kapanır ikonları ve etiket bilgisi
+    char* icon = (node->child_count > 0) ? (node->is_expanded ? "[-] " : "[+] ") : "    ";
+    printf("%s%s", icon, node->tag);
+
+    if (strlen(node->id) > 0) printf("#%s", node->id);
+    if (node == highlighted) printf(" [SELECTED]\033[0m");
+    printf("\n");
+
+    // Eğer düğüm açıksa (is_expanded == 1) çocuklarını yazdır
+    if (node->is_expanded) {
+        for (int i = 0; i < node->child_count; i++) {
+            print_collapsible_tree(node->children[i], depth + 1, highlighted);
+        }
+    }
+}

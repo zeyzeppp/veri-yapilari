@@ -8,6 +8,7 @@ unsigned int hash_func(const char* id) {
     return hash % 100;
 }
 
+
 HashTable* create_hash_table() {
     HashTable* t = (HashTable*)malloc(sizeof(HashTable));
     for(int i=0; i<100; i++) t->buckets[i] = NULL;
@@ -30,3 +31,4 @@ DOMNode* lookup_hash(HashTable* table, const char* id) {
     }
     return NULL;
 }
+

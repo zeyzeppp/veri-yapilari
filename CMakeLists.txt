@@ -18,4 +18,4 @@ add_executable(veriyapilari_proje
         hash_table.c
         hash_table.c
         dom_operations.c
-        dom_operations.h)
+        )
