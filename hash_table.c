@@ -1,34 +1,97 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "hash_table.h"
 
-unsigned int hash_func(const char* id) {
-    unsigned int hash = 5381;
-    while (*id) hash = ((hash << 5) + hash) + *id++;
-    return hash % 100;
+// --- Hash Fonksiyonu (DJB2 Algoritması) ---
+unsigned int hash_func(const char* key) {
+    unsigned long int value = 0;
+    unsigned int i = 0;
+    unsigned int key_len = strlen(key);
+
+    for (; i < key_len; ++i) {
+        value = value * 37 + key[i];
+    }
+    return value % TABLE_SIZE;
 }
 
-
+// --- Hash Tablosu Oluşturma ---
 HashTable* create_hash_table() {
-    HashTable* t = (HashTable*)malloc(sizeof(HashTable));
-    for(int i=0; i<100; i++) t->buckets[i] = NULL;
-    return t;
+    HashTable* table = (HashTable*)malloc(sizeof(HashTable));
+    table->buckets = (HashEntry**)malloc(sizeof(HashEntry*) * TABLE_SIZE);
+
+    // Tüm bucket'ları başlangıçta NULL yap
+    for (int i = 0; i < TABLE_SIZE; i++) {
+        table->buckets[i] = NULL;
+    }
+    table->count = 0;
+    return table;
 }
 
+// --- Hash Tablosuna Ekleme (insert_to_hash) ---
 void insert_to_hash(HashTable* table, const char* id, DOMNode* node) {
-    unsigned int idx = hash_func(id);
-    HashNode* n = (HashNode*)malloc(sizeof(HashNode));
-    strcpy(n->id, id); n->node = node; n->next = table->buckets[idx];
-    table->buckets[idx] = n;
+    if (id == NULL || strlen(id) == 0) return; // ID yoksa ekleme yapılmaz
+
+    unsigned int index = hash_func(id);
+
+    // Yeni kayıt için bellek ayır
+    HashEntry* new_entry = (HashEntry*)malloc(sizeof(HashEntry));
+
+    // Güvenli string kopyalama (strdup yerine standart C malloc+strcpy)
+    new_entry->id = (char*)malloc(strlen(id) + 1);
+    strcpy(new_entry->id, id);
+
+    new_entry->node = node;
+
+    // Başa ekleme (Chaining mantığı - Çarpışma çözümü)
+    new_entry->next = table->buckets[index];
+    table->buckets[index] = new_entry;
+
+    table->count++;
 }
 
+// --- Hash Tablosunda Arama (O(1) Karmaşıklık) ---
 DOMNode* lookup_hash(HashTable* table, const char* id) {
-    unsigned int idx = hash_func(id);
-    HashNode* curr = table->buckets[idx];
-    while(curr) {
-        if(strcmp(curr->id, id) == 0) return curr->node;
+    if (id == NULL || strlen(id) == 0) return NULL;
+
+    unsigned int index = hash_func(id);
+    HashEntry* entry = table->buckets[index];
+
+    // İlgili bucket'ta bağlı liste içinde ara
+    while (entry != NULL) {
+        if (strcmp(entry->id, id) == 0) {
+            return entry->node;
+        }
+        entry = entry->next;
+    }
+    return NULL; // Bulunamadı
+}
+
+// --- Hash Tablosundan Silme (Faz 3: Manipülasyon İçin) ---
+void delete_from_hash(HashTable* table, const char* id) {
+    if (id == NULL || strlen(id) == 0) return;
+
+    unsigned int index = hash_func(id);
+    HashEntry* curr = table->buckets[index];
+    HashEntry* prev = NULL;
+
+    while (curr != NULL) {
+        // ID eşleştiğinde düğümü kopar ve belleği temizle
+        if (strcmp(curr->id, id) == 0) {
+            if (prev == NULL) {
+                // Sileceğimiz eleman listenin en başındaysa
+                table->buckets[index] = curr->next;
+            } else {
+                // Sileceğimiz eleman ortalarda bir yerdeyse
+                prev->next = curr->next;
+            }
+
+            free(curr->id); // Malloc ile ayırdığımız ID string'ini temizle
+            free(curr);     // HashEntry yapısını temizle
+            table->count--;
+            return;
+        }
+        prev = curr;
         curr = curr->next;
     }
-    return NULL;
 }
-

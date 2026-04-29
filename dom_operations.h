@@ -46,4 +46,9 @@ void print_collapsible_tree(DOMNode* node, int depth, DOMNode* highlighted);
 void print_collapsible_tree(DOMNode* node, int depth, DOMNode* highlighted);
 void renderDashboard(DOMNode* root, DOMNode* highlighted, const char* message);
 
+void appendChildNode(HashTable* table, const char* parentId, const char* tag, const char* newId);
+void removeElementById(DOMNode* root, HashTable* table, const char* id);
+
+void save_html_to_file(DOMNode* root, const char* filename);
+
 #endif
