@@ -16,4 +16,6 @@ add_executable(veriyapilari_proje
         data_structures.c
         dom_parser.c
         hash_table.c
-        hash_table.c)
+        hash_table.c
+        dom_operations.c
+        dom_operations.h)
