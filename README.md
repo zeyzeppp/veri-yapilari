@@ -2,7 +2,7 @@
 
 
 
-# C-DOM: Dinamik Terminal Arayüzlü DOM Yönetim Motoru
+# DOM PARSER PROJECT
 
 Bu proje; ham HTML metinlerini analiz eden, bellek üzerinde hiyerarşik bir ağaç yapısına dönüştüren ve bu yapıyı interaktif bir terminal paneli üzerinden yöneten bir **DOM (Document Object Model) Motoru simülasyonudur**.
 
