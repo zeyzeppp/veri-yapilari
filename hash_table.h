@@ -1,0 +1,29 @@
+#ifndef HASH_TABLE_H
+#define HASH_TABLE_H
+
+#include "data_structures.h"
+
+// Hash tablosunun kapasitesi
+#define TABLE_SIZE 100
+
+// Hash tablosundaki her bir eleman (Collision/Çarpışma için bağlı liste yapısı)
+typedef struct HashEntry {
+    char* id;
+    DOMNode* node;
+    struct HashEntry* next;
+} HashEntry;
+
+// Hash Tablosu yapısı
+typedef struct HashTable {
+    HashEntry** buckets;
+    int count; // Tablodaki toplam eleman sayısı
+} HashTable;
+
+// --- Fonksiyon İmzaları ---
+HashTable* create_hash_table();
+unsigned int hash_func(const char* key);
+void insert_to_hash(HashTable* table, const char* id, DOMNode* node);
+DOMNode* lookup_hash(HashTable* table, const char* id);
+void delete_from_hash(HashTable* table, const char* id);
+
+#endif
