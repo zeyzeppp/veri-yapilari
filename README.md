@@ -6,7 +6,7 @@
 
 Bu proje; ham HTML metinlerini analiz eden, bellek üzerinde hiyerarşik bir ağaç yapısına dönüştüren ve bu yapıyı interaktif bir terminal paneli üzerinden yöneten bir **DOM (Document Object Model) Motoru simülasyonudur**.
 
-Proje, standart kütüphanelerden bağımsız olarak, **saf C dili** ile geliştirilmiş hibrit bir veri mimarisi üzerine kurulmuştur.
+Proje, standart kütüphanelerden bağımsız olarak, **C dili** ile geliştirilmiş hibrit bir veri mimarisi üzerine kurulmuştur.
 
 ---
 
