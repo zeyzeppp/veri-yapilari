@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "dom_operations.h"
-
+// Yigit
 // --- ID ILE ARAMA (Hash Table - O(1)) ---
 DOMNode* getElementById(HashTable* table, const char* id) {
     return lookup_hash(table, id);

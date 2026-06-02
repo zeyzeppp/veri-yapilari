@@ -3,7 +3,7 @@
 
 #include "data_structures.h"
 #include "hash_table.h"
-
+// Yigit
 // --- 1. Arama Fonksiyonları ---
 // ID ile Hızlı Arama (Hash Table - O(1))
 DOMNode* getElementById(HashTable* table, const char* id);
