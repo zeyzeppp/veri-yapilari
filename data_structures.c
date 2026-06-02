@@ -77,3 +77,4 @@ DOMNode* peek(Stack* s) {
     if (s->top == -1) return NULL;
     return s->items[s->top];
 }
+//güncel
