@@ -1,3 +1,7 @@
+// Developers: Zeynep Alperen, Osman Cubukcu, Seydi, Yigit Arslan
+// Project: HTML DOM Parser - Data Structures Project
+// Module: Main Entry Point
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
