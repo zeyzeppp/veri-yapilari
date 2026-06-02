@@ -1,3 +1,7 @@
+// Developer: Zeynep Alperen
+// Module: HTML Parser - Stack Based Tokenizer
+
+
 #ifndef DOM_PARSER_H
 #define DOM_PARSER_H
 
