@@ -74,3 +74,47 @@ Program çalıştırıldığında:
 - Güncel yapı `output.html` dosyasına kaydedilir
 
 
+---
+
+# 👥 Ekip Üyeleri
+
+- Zeynep Alperen — HTML Parser, Stack, Queue
+- Osman Cubukcu — N-ary Tree, Data Structures
+- Seydi — Hash Table
+- Yigit Arslan — DOM Operations, DFS/BFS
+
+---
+
+# ⚙️ Derleme ve Çalıştırma
+
+## Manuel Derleme (GCC ile)
+```bash
+gcc main.c data_structures.c dom_parser.c dom_operations.c hash_table.c -o dom_editor
+./dom_editor
+```
+
+## Docker ile Çalıştırma
+```bash
+docker-compose up --build
+```
+
+---
+
+# 🖥️ Kullanılabilir Komutlar
+
+| Komut | Açıklama |
+|---|---|
+| `find <id>` | ID'ye göre eleman arar ve işaretler |
+| `toggle <id>` | Elemanı açar veya kapatır |
+| `append <parent_id> <tag> <id>` | Yeni eleman ekler |
+| `delete <id>` | Elemanı ve alt dallarını siler |
+| `save` | Ağacı output.html olarak kaydeder |
+| `exit` | Programdan çıkar |
+
+---
+
+# 📋 Bağımlılıklar
+
+- GCC derleyici (manuel derleme için)
+- Docker Desktop (Docker ile çalıştırma için)
+
