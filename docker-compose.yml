@@ -1,0 +1,9 @@
+version: '3'
+services:
+  dom-editor:
+    build: .
+    container_name: dom_parser_app
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/app
