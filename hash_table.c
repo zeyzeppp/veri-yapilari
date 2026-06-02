@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "hash_table.h"
-
+//--S3ydi--
 // --- Hash Fonksiyonu (DJB2 Algoritması) ---
 unsigned int hash_func(const char* key) {
     unsigned long int value = 0;
