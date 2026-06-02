@@ -260,4 +260,4 @@ void save_html_to_file(DOMNode* root, const char* filename) {
     fprintf(file, "<!DOCTYPE html>\n");
     save_node_to_file(root, file, 0);
     fclose(file);
-}
+}//Implemented by Osman ilhan 
