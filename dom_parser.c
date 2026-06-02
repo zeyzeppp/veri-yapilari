@@ -1,3 +1,7 @@
+// Developer: Zeynep Alperen
+// Module: HTML Parser - Stack Based Tokenizer
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
