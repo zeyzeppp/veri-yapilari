@@ -1,0 +1,7 @@
+ 
+*.exe
+*.o
+cmake-build-debug/
+.git/
+guncel_index.html
+output.html
