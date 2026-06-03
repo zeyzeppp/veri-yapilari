@@ -95,10 +95,8 @@ gcc main.c data_structures.c dom_parser.c dom_operations.c hash_table.c -o dom_e
 
 ## Docker ile Çalıştırma
 ```bash
-docker-compose up --build
+docker-compose run --rm dom-editor
 ```
-
----
 
 # 🖥️ Kullanılabilir Komutlar
 
