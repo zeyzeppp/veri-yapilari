@@ -2,7 +2,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include "dom_operations.h"
-
+// Developer: Yiğit Arslan (032190028)
+// Module: DOM Operations - Tree Navigation and Manipulation
 // --- ID ILE ARAMA (Hash Table - O(1)) ---
 DOMNode* getElementById(HashTable* table, const char* id) {
     return lookup_hash(table, id);
